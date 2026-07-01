@@ -2,7 +2,7 @@
 
 **Submission date:** 2026-07-01
 **Submitted by:** Emiliano Solazzi, project founder and protocol operator
-**Sender email:** coma.retained@gmail.com
+**Sender email:** emiliano@nativebtc.org
 **Project website:** https://peth-eta.vercel.app
 **Code repository:** https://github.com/emilianosolazzi/pETH-Token
 **Scope:** Token identity, project facts, governance disclosure, anti-misrepresentation, and non-infringement for pETH on Base Mainnet.
