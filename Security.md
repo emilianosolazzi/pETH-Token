@@ -4,7 +4,7 @@
 
 To report a security vulnerability in the pETH contract, contact the project operator directly:
 
-- **Email:** coma.retained@gmail.com
+- **Email:** emiliano@nativebtc.org
 - **Subject:** `[pETH SECURITY] <brief description>`
 
 Please do not open a public GitHub issue for security vulnerabilities.
