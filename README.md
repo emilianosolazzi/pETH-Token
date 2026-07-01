@@ -88,7 +88,7 @@ BASESCAN_TOKEN_SUBMISSION.md  — Detailed Basescan token submission document
 
 See [Security.md](Security.md) for invariant properties, reentrancy protection, fee bounds, and vulnerability reporting instructions.
 
-To report a security vulnerability: **coma.retained@gmail.com** with subject `[pETH SECURITY]`.
+To report a security vulnerability: **emiliano@nativebtc.org** with subject `[pETH SECURITY]`.
 
 ---
 
