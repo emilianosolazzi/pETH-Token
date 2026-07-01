@@ -97,7 +97,7 @@ If Basescan identifies a name / symbol conflict, the project is available to pro
 
 ## 6. Sender Authority
 
-The submission is sent from `coma.retained@gmail.com`. The protocol operator wallet is `0xAa85589DD09C830e8C5196264A1A019Ce26213E7`.
+The submission is sent from `emiliano@nativebtc.org`. The protocol operator wallet is `0xAa85589DD09C830e8C5196264A1A019Ce26213E7`.
 
 To demonstrate that this submission is authorized by the actual contract operator, the following verification paths are available on request:
 
