@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>pETH — Invariant-Based ETH Reserve Token on Base</title>
-  <meta name="description" content="pETH is a transparent, deterministic ETH reserve token on Base. Mint and redeem 1:1 against native ETH held on-chain.">
+  <meta name="description" content="pETH (ERC-8300) is a transparent, deterministic ETH reserve token on Base. Mint and redeem 1:1 against native ETH held on-chain.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -236,6 +236,7 @@
       </a>
       <div class="links">
         <a href="#how-it-works">How It Works</a>
+        <a href="https://github.com/ethereum/ERCs/pull/1813" target="_blank">ERC-8300</a>
         <a href="#team">Team</a>
         <a href="https://github.com/emilianosolazzi/pETH-Token" target="_blank">GitHub</a>
       </div>
@@ -245,9 +246,9 @@
   <div class="container">
 
     <section class="hero">
-      <div class="hero-badge"><span class="dot"></span> Live on Base</div>
+      <div class="hero-badge"><span class="dot"></span> Live on Base · ERC-8300</div>
       <h1>Transparent ETH reserves,<br><span>verifiable on-chain</span></h1>
-      <p>pETH is an invariant-based reserve token backed 1:1 by native ETH. Deterministic minting and redemption with full on-chain transparency.</p>
+      <p>pETH is an invariant-based reserve token (ERC-8300) backed 1:1 by native ETH. Deterministic minting and redemption with full on-chain transparency.</p>
       <div class="hero-actions">
         <a href="https://basescan.org/token/0x017cFe7E298d48A23d521BB409Dbc23D14D2b016" class="btn btn-primary" target="_blank">View on BaseScan</a>
         <a href="https://github.com/emilianosolazzi/pETH-Token" class="btn btn-secondary" target="_blank">Source Code</a>
@@ -315,15 +316,19 @@
     <section>
       <div class="section-label">Technical</div>
       <h2 class="section-title">Standards &amp; resources</h2>
-      <p class="section-desc">pETH is developed under an open ERC standard proposal for invariant-first reserve receipt tokens.</p>
-      <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+      <p class="section-desc">pETH is developed under ERC-8300, a formal standard proposal for invariant-first reserve receipt tokens currently under review.</p>
+      <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
         <a href="https://github.com/emilianosolazzi/pETH-Token" target="_blank" class="card" style="text-decoration:none;color:inherit;">
           <h3>GitHub Repository</h3>
           <p>Contract source, documentation, and technical specification.</p>
         </a>
         <a href="https://github.com/ethereum/ERCs/pull/1813" target="_blank" class="card" style="text-decoration:none;color:inherit;">
-          <h3>ERC Draft (PR #1813)</h3>
-          <p>Invariant-First Reserve Receipt Token standard proposal under review.</p>
+          <h3>ERC-8300 (Draft)</h3>
+          <p>Invariant-First Reserve Receipt Token standard proposal under review at ethereum/ERCs.</p>
+        </a>
+        <a href="https://ethereum-magicians.org/t/erc-8300-invariant-first-reserve-receipt-token-ifr-peth/28753" target="_blank" class="card" style="text-decoration:none;color:inherit;">
+          <h3>Ethereum Magicians Discussion</h3>
+          <p>Open discussion thread for ERC-8300 specification feedback and community input.</p>
         </a>
         <a href="https://basescan.org/address/0x017cFe7E298d48A23d521BB409Dbc23D14D2b016#code" target="_blank" class="card" style="text-decoration:none;color:inherit;">
           <h3>Verified Contract</h3>
@@ -351,6 +356,8 @@
     <div class="container">
       <div class="footer-links">
         <a href="https://github.com/emilianosolazzi/pETH-Token" target="_blank">GitHub</a>
+        <a href="https://github.com/ethereum/ERCs/pull/1813" target="_blank">ERC-8300</a>
+        <a href="https://ethereum-magicians.org/t/erc-8300-invariant-first-reserve-receipt-token-ifr-peth/28753" target="_blank">Eth Magicians</a>
         <a href="https://basescan.org/token/0x017cFe7E298d48A23d521BB409Dbc23D14D2b016" target="_blank">BaseScan</a>
         <a href="mailto:emiliano@nativebtc.org">Contact</a>
       </div>
