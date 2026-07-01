@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pETH — Invariant-Based ETH Reserve Token on Base</title>
+  <meta name="description" content="pETH is a transparent, deterministic ETH reserve token on Base. Mint and redeem 1:1 against native ETH held on-chain.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0e17;
+      --surface: #111827;
+      --surface-2: #1a2235;
+      --border: #1e293b;
+      --text: #e2e8f0;
+      --text-dim: #94a3b8;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.15);
+      --green: #22c55e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(10, 14, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .inner {
+      max-width: 1080px; margin: 0 auto;
+      padding: 0.875rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    nav .logo { display: flex; align-items: center; gap: 0.625rem; text-decoration: none; color: var(--text); font-weight: 600; font-size: 1.125rem; }
+    nav .logo img { width: 28px; height: 28px; }
+    nav .links { display: flex; gap: 1.75rem; }
+    nav .links a { color: var(--text-dim); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    nav .links a:hover { color: var(--text); }
+
+    /* LAYOUT */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 5rem 0; }
+
+    /* HERO */
+    .hero {
+      padding-top: 8rem;
+      padding-bottom: 4rem;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent-glow);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 100px;
+      padding: 0.375rem 1rem;
+      font-size: 0.8125rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+    .hero h1 {
+      font-size: clamp(2.25rem, 5vw, 3.25rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--text-dim);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+    .hero-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #2563eb; }
+    .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: #334155; background: var(--surface-2); }
+
+    /* CONTRACT STRIP */
+    .contract-strip {
+      text-align: center;
+      padding: 0 0 3rem;
+    }
+    .contract-strip .label { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.375rem; }
+    .contract-strip code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+      color: var(--accent);
+      background: var(--accent-glow);
+      padding: 0.375rem 0.75rem;
+      border-radius: 6px;
+      word-break: break-all;
+    }
+
+    /* SECTION HEADINGS */
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-desc {
+      color: var(--text-dim);
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* CARDS GRID */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .card-icon {
+      width: 40px; height: 40px;
+      background: var(--accent-glow);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.875rem; color: var(--text-dim); line-height: 1.55; }
+
+    /* HOW IT WORKS */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      counter-reset: step;
+    }
+    .step { counter-increment: step; }
+    .step::before {
+      content: counter(step);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-glow);
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+    }
+    .step h3 { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem; }
+    .step p { font-size: 0.8125rem; color: var(--text-dim); }
+
+    /* TEAM */
+    .team-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      max-width: 480px;
+    }
+    .team-card h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .team-card .role { color: var(--accent); font-size: 0.875rem; margin-bottom: 0.75rem; }
+    .team-card p { font-size: 0.875rem; color: var(--text-dim); margin-bottom: 1rem; }
+    .team-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .team-card a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0;
+      text-align: center;
+    }
+    footer p { font-size: 0.8125rem; color: var(--text-dim); }
+    footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 1rem; }
+    footer .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 0.8125rem; }
+    footer .footer-links a:hover { color: var(--text); }
+
+    /* SEPARATOR */
+    .sep { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    @media (max-width: 640px) {
+      nav .links { gap: 1rem; }
+      .hero { padding-top: 6.5rem; }
+      section { padding: 3.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="inner">
+      <a href="#" class="logo">
+        <img src="https://raw.githubusercontent.com/emilianosolazzi/pETH-Token/main/logo/pETH-logo.svg" alt="pETH">
+        pETH
+      </a>
+      <div class="links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#team">Team</a>
+        <a href="https://github.com/emilianosolazzi/pETH-Token" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <section class="hero">
+      <div class="hero-badge"><span class="dot"></span> Live on Base</div>
+      <h1>Transparent ETH reserves,<br><span>verifiable on-chain</span></h1>
+      <p>pETH is an invariant-based reserve token backed 1:1 by native ETH. Deterministic minting and redemption with full on-chain transparency.</p>
+      <div class="hero-actions">
+        <a href="https://basescan.org/token/0x017cFe7E298d48A23d521BB409Dbc23D14D2b016" class="btn btn-primary" target="_blank">View on BaseScan</a>
+        <a href="https://github.com/emilianosolazzi/pETH-Token" class="btn btn-secondary" target="_blank">Source Code</a>
+      </div>
+    </section>
+
+    <div class="contract-strip">
+      <div class="label">Contract Address (Base)</div>
+      <code>0x017cFe7E298d48A23d521BB409Dbc23D14D2b016</code>
+    </div>
+
+    <hr class="sep">
+
+    <section>
+      <div class="section-label">Overview</div>
+      <h2 class="section-title">Built on invariants, not assumptions</h2>
+      <p class="section-desc">pETH enforces strict accounting rules at the contract level so reserve backing is always provable, not promised.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">⚖️</div>
+          <h3>1:1 ETH Backing</h3>
+          <p>Every pETH token is backed by native ETH held directly in the contract. No rehypothecation, no external dependencies.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔒</div>
+          <h3>Deterministic Accounting</h3>
+          <p>Minting and redemption follow fixed invariant rules enforced on-chain. The math is the mechanism.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔍</div>
+          <h3>Fully Transparent</h3>
+          <p>Contract source is verified and open. Anyone can audit the reserve balance and token supply at any time.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="how-it-works">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Mint, hold, redeem</h2>
+      <p class="section-desc">pETH operates through a straightforward lifecycle with no governance votes or off-chain decisions.</p>
+      <div class="steps">
+        <div class="step">
+          <h3>Deposit ETH</h3>
+          <p>Send native ETH to the pETH contract on Base.</p>
+        </div>
+        <div class="step">
+          <h3>Receive pETH</h3>
+          <p>The contract mints pETH according to the deterministic invariant formula.</p>
+        </div>
+        <div class="step">
+          <h3>Hold or Transfer</h3>
+          <p>pETH is a standard ERC-20 token. Use it across the Base ecosystem.</p>
+        </div>
+        <div class="step">
+          <h3>Redeem for ETH</h3>
+          <p>Burn pETH to withdraw the underlying ETH from the contract reserve.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section>
+      <div class="section-label">Technical</div>
+      <h2 class="section-title">Standards &amp; resources</h2>
+      <p class="section-desc">pETH is developed under an open ERC standard proposal for invariant-first reserve receipt tokens.</p>
+      <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+        <a href="https://github.com/emilianosolazzi/pETH-Token" target="_blank" class="card" style="text-decoration:none;color:inherit;">
+          <h3>GitHub Repository</h3>
+          <p>Contract source, documentation, and technical specification.</p>
+        </a>
+        <a href="https://github.com/ethereum/ERCs/pull/1813" target="_blank" class="card" style="text-decoration:none;color:inherit;">
+          <h3>ERC Draft (PR #1813)</h3>
+          <p>Invariant-First Reserve Receipt Token standard proposal under review.</p>
+        </a>
+        <a href="https://basescan.org/address/0x017cFe7E298d48A23d521BB409Dbc23D14D2b016#code" target="_blank" class="card" style="text-decoration:none;color:inherit;">
+          <h3>Verified Contract</h3>
+          <p>Source code verified on BaseScan. Inspect the logic yourself.</p>
+        </a>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="team">
+      <div class="section-label">Team</div>
+      <h2 class="section-title">Who's building pETH</h2>
+      <div class="team-card">
+        <h3>Emiliano Solazzi Griminger</h3>
+        <div class="role">Founder &amp; Developer</div>
+        <p>Building transparent DeFi infrastructure on Base. Also developing post-quantum cryptography tooling for Bitcoin (PQ-PSBT-WALLET).</p>
+        <a href="https://www.linkedin.com/in/emiliano-germán-solazzi-griminger-936717210" target="_blank">LinkedIn Profile →</a>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://github.com/emilianosolazzi/pETH-Token" target="_blank">GitHub</a>
+        <a href="https://basescan.org/token/0x017cFe7E298d48A23d521BB409Dbc23D14D2b016" target="_blank">BaseScan</a>
+        <a href="mailto:emiliano@nativebtc.org">Contact</a>
+      </div>
+      <p>&copy; 2025 pETH. Built on Base.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
