@@ -15,7 +15,7 @@ This document is the single source of truth for Basescan's review. Every claim i
 
 | Field | Value |
 |---|---|
-| **Token name** | pETH |
+| **Token name** | InvariantFirstReserveToken |
 | **Symbol** | pETH |
 | **Standard** | ERC-20 (immutable, non-upgradeable, non-pausable) + EIP-2612 permit |
 | **Decimals** | 18 |
