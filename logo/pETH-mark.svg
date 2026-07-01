@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="pETH mark">
+  <defs>
+    <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffbc67"/>
+      <stop offset="100%" stop-color="#ff8f2f"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#17202b"/>
+      <stop offset="100%" stop-color="#0d131b"/>
+    </linearGradient>
+    <linearGradient id="dTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffcd7a"/>
+      <stop offset="100%" stop-color="#ff9a3c"/>
+    </linearGradient>
+    <linearGradient id="dBot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d0daea"/>
+      <stop offset="100%" stop-color="#b5c4db"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="8" y="8" width="112" height="112" rx="30" fill="url(#frame)"/>
+  <rect x="20" y="20" width="88" height="88" rx="26" fill="url(#core)"/>
+
+  <path d="M64 37 L50 61 L64 53 L79 61 Z" fill="url(#dTop)"/>
+  <path d="M64 80 L50 64 L64 71 L79 64 Z" fill="url(#dBot)"/>
+
+  <rect x="43" y="91" width="33" height="2" rx="1" fill="#ffae53"/>
+  <rect x="71" y="91" width="4" height="2" fill="#ffae53"/>
+  <rect x="76" y="91" width="9" height="2" rx="1" fill="#ff8f2f" opacity="0.55"/>
+
+  <circle cx="90" cy="92" r="2.8" fill="#2ed17d"/>
+  <circle cx="90" cy="92" r="5" fill="none" stroke="#2ed17d" stroke-opacity="0.35" stroke-width="1"/>
+</svg>

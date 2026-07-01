@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="pETH logo">
+  <defs>
+    <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffbc67"/>
+      <stop offset="100%" stop-color="#ff8f2f"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#17202b"/>
+      <stop offset="100%" stop-color="#0d131b"/>
+    </linearGradient>
+    <linearGradient id="dTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffcd7a"/>
+      <stop offset="100%" stop-color="#ff9a3c"/>
+    </linearGradient>
+    <linearGradient id="dBot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d0daea"/>
+      <stop offset="100%" stop-color="#b5c4db"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Frame -->
+  <rect x="32" y="32" width="448" height="448" rx="120" fill="url(#frame)"/>
+
+  <!-- Core field -->
+  <rect x="78" y="78" width="356" height="356" rx="106" fill="url(#core)"/>
+
+  <!-- ETH diamond — orange top face, light bottom face, optically centered above bar -->
+  <path d="M256 149 L198 242 L256 213 L315 242 Z" fill="url(#dTop)"/>
+  <path d="M256 319 L198 254 L256 284 L315 254 Z" fill="url(#dBot)"/>
+
+  <!-- T segment — left cap rounded, right end square -->
+  <rect x="172" y="369" width="130" height="8" rx="4" ry="4" fill="#ffae53"/>
+  <rect x="285" y="369" width="17" height="8" fill="#ffae53"/>
+
+  <!-- F segment — left end square (butts against T), right cap rounded -->
+  <rect x="302" y="369" width="38" height="8" rx="4" ry="4" fill="#ff8f2f" opacity="0.55"/>
+  <rect x="302" y="369" width="6" height="8" fill="#ff8f2f" opacity="0.55"/>
+
+  <!-- Live invariant dot -->
+  <circle cx="360" cy="373" r="11" fill="#2ed17d"/>
+  <circle cx="360" cy="373" r="20" fill="none" stroke="#2ed17d" stroke-opacity="0.35" stroke-width="3.5"/>
+</svg>
